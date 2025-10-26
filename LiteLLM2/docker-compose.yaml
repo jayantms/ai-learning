@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  litellm:
+    image: ghcr.io/berriai/litellm:main
+    container_name: litellm
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./litellm_config.yaml:/app/config.yaml
+    command: ["--config", "/app/config.yaml", "--port", "4000"]
+
+  ollama:
+    image: ollama/ollama
+    container_name: ollama-simple2
+    ports:
+      - "11435:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    networks:
+      - llm-network
+    restart: unless-stopped
+    entrypoint: ["/bin/bash", "-c", "\
+      ollama serve & \
+      sleep 5 && \
+      ollama pull mxbai-embed-large && \
+      ollama pull llama3.2 && \
+      wait"]
+
+networks:
+  llm-network:
+    driver: bridge
+
+volumes:
+  ollama-data:
+  chroma-data:
+

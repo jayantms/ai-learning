@@ -1,0 +1,6 @@
+model_list:
+  - model_name: llama-3.2
+    litellm_params:
+      model: ollama/llama3.2   # or just llama3.2 depending on Ollama naming
+      api_base: "http://localhost:11434"
+      api_key: "not-needed"

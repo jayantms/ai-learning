@@ -1,0 +1,12 @@
+python-dotenv
+langchain-community
+langchain-openai
+langchain-text-splitters
+faiss-cpu
+openai
+beautifulsoup4
+langchain-groq
+langgraph
+langchain-hub
+pydantic
+ipython
